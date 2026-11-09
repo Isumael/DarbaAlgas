@@ -1,31 +1,14 @@
-﻿public abstract class Employee
+﻿var employees = new List<Employee>
 {
-    public string Name { get; }
-    // TODO: konstruktors, kas saņem vārdu
+    new FullTimeEmployee("Anna", 1200m),
+    new HourlyEmployee("Jānis", 8m, 100)
+};
 
-    // TODO: abstrakta metode CalculateSalary()
+foreach (Employee e in employees)
+{
+    Console.WriteLine($"{e.Name}: {e.CalculateSalary():F2}");
 }
 
+var payroll = new PayrollCalculator();
 
-public class FullTimeEmployee : Employee
-{
-    private decimal _monthlySalary;
-    // TODO: konstruktors (name, monthlySalary), izsauc base(name)
-
-    // TODO: CalculateSalary()
-}
-
-
-public class HourlyEmployee : Employee
-{
-    // TODO: lauki, konstruktors, CalculateSalary()
-}
-
-
-public class PayrollCalculator
-{
-    public decimal TotalSalary(List<Employee> employees)
-    {
-        // TODO: cikls pa sarakstu, saskaiti algas
-    }
-}
+Console.WriteLine($"Kopā: {payroll.TotalSalary(employees):F2}");
