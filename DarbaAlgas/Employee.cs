@@ -1,12 +1,11 @@
 ﻿public abstract class Employee
 {
-    public string Name { get; }
+   public string Name { get; }
     
     public Employee(string name)
     {
         Name = name;
     }
-
     public abstract decimal CalculateSalary();
 }
 
@@ -36,19 +35,37 @@ public class HourlyEmployee : Employee
         _hourlySalary = hourlySalary;
         _hoursWorked = hoursWorked;
     }
-    public override decimal CalculateSalary() {
+    public override decimal CalculateSalary() 
+    {
         return _hourlySalary * _hoursWorked;
+    }
+}
+
+
+public class SalesEmployee : Employee
+{
+    private decimal _baseSalary;
+    private decimal _salesAmount;
+    public SalesEmployee(string name, decimal baseSalary, decimal salesAmount) : base(name)
+    {
+        _baseSalary = baseSalary;
+        _salesAmount = salesAmount;
+    }
+    public override decimal CalculateSalary()
+    {
+        return _baseSalary + (_salesAmount * 0.05m);
     }
 }
 
 
 public class PayrollCalculator
 {
-    public decimal TotalSalary(List<Employee>)
-        {
+    public decimal TotalSalary(List<Employee> employees)
+    {
             decimal total = 0;
             foreach (var employee in employees)
             {
+                // Paskaidrojums: Abstractā metode atļaut izmantot to pašu metodi dažādām darbinieku klasēm, lai aprēķinātu algu, neatkarīgi no darbinieka veida.
                 total += employee.CalculateSalary();
             }
             return total;
