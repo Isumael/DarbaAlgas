@@ -44,9 +44,7 @@ public class HourlyEmployee : Employee
 
 public class PayrollCalculator
 {
-    public decimal TotalSalary(List<Employee> employees)
-    {
-        decimal TotalSalary(list<Employee> employees)
+    public decimal TotalSalary(List<Employee>)
         {
             decimal total = 0;
             foreach (var employee in employees)
@@ -54,7 +52,5 @@ public class PayrollCalculator
                 total += employee.CalculateSalary();
             }
             return total;
-
-        }
     }
 }
